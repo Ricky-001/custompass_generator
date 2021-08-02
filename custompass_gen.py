@@ -56,13 +56,6 @@ def run():
         
         
 ##########################################################################################################################
-
-        # include common prefixes/ suffixes
-        print('{}[+]{} Adding common prefixes and suffixes to {}{} generated words{}'.format(color.GREEN,color.END,color.CYAN,len(final_wordlist),color.END))
-        templist = append_prepend(final_wordlist)
-        final_wordlist += templist
-
-##########################################################################################################################
 # MULTITHREADED TRANSFORMS 
 ##########################################################################################################################
 
@@ -83,6 +76,13 @@ def run():
             temp_wordlist = []
             temp_wordlist += multithread_transforms(case_transform, final_wordlist, UI.proc_threads)
             final_wordlist += temp_wordlist
+
+##########################################################################################################################
+
+        # include common prefixes/ suffixes
+        print('{}[+]{} Adding common prefixes and suffixes to {}{} generated words{}'.format(color.GREEN,color.END,color.CYAN,len(final_wordlist),color.END))
+        templist = append_prepend(final_wordlist)
+        final_wordlist += templist
 
 ##########################################################################################################################
 
