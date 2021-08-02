@@ -3,6 +3,7 @@
 from .statics import color
 from .utilities import is_empty,is_valid_date,clear
 from .transforms import take_initials
+from modules import banner
 
 class userinterface:
 
@@ -17,6 +18,7 @@ class userinterface:
 
     def ui(self):
         clear()
+        banner.show()
         # MIN password length
         while True:
             min_length = input('{}[?]{} Minimum password length {}(default: {}){} >>> '.format(color.BLUE, color.END,color.YELLOW,self.DEFAULT_MIN,color.END))
