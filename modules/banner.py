@@ -74,19 +74,24 @@ help_banner = \
   |  {}Note:-{} {}The default values for the settings fields are{}               |
   |  {}highlighted{}, which will be used if you leave the fields empty{}       |
   |                                                                      |
+  |  The script automatically searches for songs and their lyrics        |
+  |  based on the artist names provided (if any song exists) and adds    |
+  |  the lyrics as some of the passphrases to be used against the target |
+  |     {}[Ensure network connection for this feature to work]{}             |
+  |                                                                      |
   |  You can choose to transform the basic details as follows:-          |
   |   * Case transformations  : {}mYpAsSwOrD{}                               |
   |   * Leet transformations  : {}my1337P@$$w0rd{}                           |
   |   * Space transformations : {}my_Secret-Password{}                       |
   |  {}Note:-{} {}If you choose to enable Case Transformations,{}                |
-  |         {}the cases of your input will not matter, and all cases will{}  |
-  |         {}be used, otherwise, words will be formed using only{}          |
+  |         {}the cases of your input will not matter, and all cases{}       |
+  |         {}will be used, otherwise, words will be formed using only{}     |
   |         {}the cases in which the input is provided{}                     |
   |                                                                      |
   |                                             created by ~ {}Ricky-001{}   |
   |                   {}{}https://github.com/Ricky-001/custompass_generator{}  |
   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-""".format(color.PURPLE,color.END, color.ORANGE,color.END, color.YELLOW,color.ORANGE,color.END, color.RED,color.END, color.RED,color.END, color.RED,color.END, color.PURPLE,color.END, color.ORANGE,color.END, color.ORANGE,color.END, color.ORANGE,color.END, color.ORANGE,color.END, color.GREEN,color.END, color.BLUE,color.UNDERLINE,color.END)
+""".format(color.PURPLE,color.END, color.ORANGE,color.END, color.YELLOW,color.ORANGE,color.END, color.YELLOW,color.END, color.RED,color.END, color.RED,color.END, color.RED,color.END, color.PURPLE,color.END, color.ORANGE,color.END, color.ORANGE,color.END, color.ORANGE,color.END, color.ORANGE,color.END, color.GREEN,color.END, color.BLUE,color.UNDERLINE,color.END)
 
 
 def show():
