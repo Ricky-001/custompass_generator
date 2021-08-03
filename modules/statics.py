@@ -37,22 +37,3 @@ class charsets:
         common_prefix_suffix.append(str(i).zfill(2))
         common_prefix_suffix.append(str(i).zfill(3))
         common_prefix_suffix.extend(['123','12345','abc','abcd','abcde','987'])
-        '''
-        for j in range(i+1,10):
-            common_prefix_suffix.append(str(i)+str(j))
-            common_prefix_suffix.append(chr(i+65)+chr(j+65))
-            common_prefix_suffix.append(chr(i+97)+chr(j+97))
-            for k in range(j+1,10):
-                common_prefix_suffix.append(str(i)+str(j)+str(k))
-                common_prefix_suffix.append(chr(i+65)+chr(j+65)+chr(k+65))
-                common_prefix_suffix.append(chr(i+97)+chr(j+97)+chr(k+97))
-                
-                for l in range(k+1,10):
-                    common_prefix_suffix.append(str(i)+str(j)+str(k)+str(l))
-                    common_prefix_suffix.append(chr(i+65)+chr(j+65)+chr(k+65)+chr(l+65))
-                    common_prefix_suffix.append(chr(i+97)+chr(j+97)+chr(k+97)+chr(l+97))
-                    for m in range(l+1,10):
-                        common_prefix_suffix.append(str(i)+str(j)+str(k)+str(l)+str(m))
-                        common_prefix_suffix.append(chr(i+65)+chr(j+65)+chr(k+65)+chr(l+65)+chr(m+65))
-                        common_prefix_suffix.append(chr(i+97)+chr(j+97)+chr(k+97)+chr(l+97)+chr(m+97))
-        '''
