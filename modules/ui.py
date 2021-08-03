@@ -127,11 +127,12 @@ class userinterface:
 ##########################################################################################################################
 
         # significant artists/ role model names
-        self.artists = input('{}[?]{} Favourite Artist(s) names (comma-separated) [also attempts to search for relevant song lyrics] >>> '.format(color.BLUE, color.END))        
+        self.artists = input('{}[?]{} Favourite Artist(s) names (comma-separated)>>> '.format(color.BLUE, color.END))        
         if is_empty(self.artists):
             self.artists = False
         else:
             self.artists = self.artists.split(',')
+            print('[*] The script will attempt to search for relevant song lyrics (ensure internet connection)')
 
 ##########################################################################################################################
 
