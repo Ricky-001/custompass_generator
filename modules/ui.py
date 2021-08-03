@@ -12,7 +12,7 @@ class userinterface:
         self.DEFAULT_MAX = 12
         self.DEFAULT_N_WORDS = 2
         self.DEFAULT_OUTPUT_FILE = 'custompass.txt'
-        self.DEFAULT_THREADS = 5
+        self.DEFAULT_THREADS = 5        
 
 ##########################################################################################################################
 
@@ -127,8 +127,7 @@ class userinterface:
 ##########################################################################################################################
 
         # significant artists/ role model names
-        #self.artists = input('{}[?]{} Significant Artist/Role Model names (comma-separated) [also searches song lyrics] >>> '.format(color.BLUE, color.END))
-        self.artists = input('{}[?]{} Significant Artist/Role Model names (comma-separated) >>> '.format(color.BLUE, color.END))
+        self.artists = input('{}[?]{} Favourite Artist(s) names (comma-separated) [also attempts to search for relevant song lyrics] >>> '.format(color.BLUE, color.END))        
         if is_empty(self.artists):
             self.artists = False
         else:

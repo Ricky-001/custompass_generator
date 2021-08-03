@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 
 import sys, os, datetime
+from time import sleep
 from modules.ui import userinterface
 from modules.transforms import *
 from modules.statics import color,charsets
 from modules.separators import *
 from modules.utilities import remove_by_lengths
+from modules.song_lyrics_extractor import song_search_by_artist,lyrics_extractor
+from modules.lyrics2pass import make_phrases
 
 def run():
 
@@ -81,8 +84,37 @@ def run():
 
         # include common prefixes/ suffixes
         print('{}[+]{} Adding common prefixes and suffixes to {}{} generated words{}'.format(color.GREEN,color.END,color.CYAN,len(final_wordlist),color.END))
+        print('{}[!] {}This operation may take several minutes!{}'.format(color.ORANGE, color.CBLINK, color.END))
         templist = append_prepend(final_wordlist)
         final_wordlist += templist
+
+##########################################################################################################################
+
+        # search for song names based on favourite artists
+        # extract their lyrics and use them as passphrases
+        for artist in UI.artists:
+            phrases=[]            
+            songs = song_search_by_artist(artist)
+            #print('[!] {}{}{} songs found for artist: {}{}{}'.format(color.YELLOW,len(songs),color.END,color.YELLOW,artist,color.END))
+            if len(songs)>5:
+                print('{}[!] {}This operation may take several minutes!{}'.format(color.ORANGE, color.CBLINK, color.END))
+            if songs:
+                temp_wordlist = []
+                print('{}[+]{} Applying case transforms to {}{}{} song names found for artist: {}{}{}'.format(color.GREEN,color.END,color.YELLOW,len(songs),color.END,color.YELLOW,artist,color.END))
+                temp_wordlist += multithread_transforms(case_transform, songs, UI.proc_threads)
+                final_wordlist += temp_wordlist
+
+                for song in songs:
+                    size = len(phrases)
+                    if song:
+                        lyrics = lyrics_extractor(artist, song)
+                    if lyrics:                        
+                        for line in lyrics.split('\n'):        
+                            phrases.extend(make_phrases(line, UI.min_length, UI.max_length))
+                        print('{}[+]{} Song: {}{}{} => {}{} new words/ phrases{} added'.format(color.GREEN,color.END,color.YELLOW,song,color.END,color.CYAN,len(phrases)-size,color.END))                    
+                    sleep(2)
+                final_wordlist += list(set(phrases))
+
 
 ##########################################################################################################################
 
