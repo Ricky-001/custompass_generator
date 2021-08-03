@@ -17,3 +17,8 @@ The script also adds common prefixes and suffixes one may use in their passwords
 * password123
 * 12345admin
 
+Finally, the script scrapes the internet for songs and their lyrics to be added as passphrases
+(based on the names provided in the Artists/ Role Models section)
+- Fetches list of Songs based on Artist name from https://www.song-list.net/
+- Extracts the Lyrics of fetched Songs from https://www.azlyrics.com/
+
