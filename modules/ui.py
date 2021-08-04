@@ -8,10 +8,10 @@ from modules import banner
 class userinterface:
 
     def __init__(self):
-        self.DEFAULT_MIN = 4
+        self.DEFAULT_MIN = 6
         self.DEFAULT_MAX = 12
         self.DEFAULT_N_WORDS = 2
-        self.DEFAULT_OUTPUT_FILE = 'custompass.txt'
+        self.DEFAULT_OUTPUT_FILE = 'custom_passlist.txt'
         self.DEFAULT_THREADS = 5        
 
 ##########################################################################################################################
