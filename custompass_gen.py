@@ -96,12 +96,12 @@ def run():
         if UI.artists:
             for artist in UI.artists:
                 phrases=[]            
-                songs = song_search_by_artist(artist)                
-                if len(songs)>5:
-                    print('{}[!] This operation may take several minutes!{}'.format(color.ORANGE, color.END))
+                songs = song_search_by_artist(artist)
                 if songs:
                     temp_wordlist = []
                     print('{}[+]{} Applying case transforms to {}{}{} song names found for artist: {}{}{}'.format(color.GREEN,color.END,color.YELLOW,len(songs),color.END,color.YELLOW,artist,color.END))
+                    if len(songs)>5:
+                        print('{}[!] This operation may take several minutes!{}'.format(color.ORANGE, color.END))
                     temp_wordlist += multithread_transforms(case_transform, songs, UI.proc_threads)
                     final_wordlist += temp_wordlist
 
@@ -121,10 +121,6 @@ def run():
 
         # re-check for duplicates
         final_wordlist = list(set((final_wordlist)))
-
-#        for word in final_wordlist:
-#            if word[0] in charsets.sep_charset or word[-1] in charsets.sep_charset:
-#                final_wordlist.remove(word)
 
         # SAVE WORDLIST TO FILE        
         with open(UI.outfile, 'w') as of:
