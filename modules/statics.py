@@ -25,7 +25,7 @@ class charsets:
     # long list of separators
     #sep_charset = "!#$%&+-/:@\^_~"
     # short list of separators
-    sep_charset = "-_+"
+    sep_charset = "-_ +"
 
     # to use an extensive list of prefixes and suffixes
     # just uncomment the lines and the code block below
