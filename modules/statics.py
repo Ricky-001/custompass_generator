@@ -17,7 +17,7 @@ class color:
 
 class charsets:
 
-    leet_chars = ' aeiolsbtcgh'
+    leet_chars = 'aeiolsbtcgh'
     leet_charset = {'a':['4','@'], 'e':['3'], 'i':['1','!','¡'],
                     'l':['1'], 'o':['0'], 's':['$','5'], 'b':['8'], 
                     't':['7'], 'c':['('], 'g':['6'], 'h':['#'],}
@@ -25,7 +25,7 @@ class charsets:
     # long list of separators
     #sep_charset = "!#$%&+-/:@\^_~"
     # short list of separators
-    sep_charset = "-_ +"
+    sep_charset = " -_+"
 
     # to use an extensive list of prefixes and suffixes
     # just uncomment the lines and the code block below
@@ -36,4 +36,4 @@ class charsets:
         #common_prefix_suffix.append(chr(i+97))
         common_prefix_suffix.append(str(i).zfill(2))
         common_prefix_suffix.append(str(i).zfill(3))
-        common_prefix_suffix.extend(['123','12345','abc','abcd','abcde','987'])
+    common_prefix_suffix.extend(['123','12345','abc','abcd','abcde','987'])

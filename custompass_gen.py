@@ -55,7 +55,7 @@ def run():
         # Remove words by min-max length range established
         final_wordlist = remove_by_lengths(final_wordlist, UI.min_length, UI.max_length)
         # remove any possible duplicates at this point
-        final_wordlist = list(set((final_wordlist)))
+        final_wordlist = list(set((final_wordlist)))        
         
         
 ##########################################################################################################################
@@ -66,7 +66,7 @@ def run():
         if UI.leet:
             # send the final wordlist for leet transformations
             print('{}[+]{} Applying leet transformations to {}{} words{}'.format(color.GREEN, color.END, color.CYAN, len(final_wordlist),color.END))
-            print('{}[!] {}This operation may take several minutes!{}'.format(color.ORANGE, color.CBLINK, color.END))
+            print('{}[!] This operation may take several minutes!{}'.format(color.ORANGE, color.END))
             temp_wordlist = []            
             temp_wordlist += multithread_transforms(leet_transform, final_wordlist, UI.proc_threads)
             final_wordlist += temp_wordlist
@@ -75,18 +75,19 @@ def run():
         if UI.case:
             # send the final wordlist for case transformations
             print('{}[+]{} Applying case transformations to {}{} words{}'.format(color.GREEN, color.END,color.CYAN,len(final_wordlist),color.END))
-            print('{}[!] {}This operation may take several minutes!{}'.format(color.ORANGE, color.CBLINK, color.END))
+            print('{}[!] This operation may take several minutes!{}'.format(color.ORANGE, color.END))
             temp_wordlist = []
             temp_wordlist += multithread_transforms(case_transform, final_wordlist, UI.proc_threads)
             final_wordlist += temp_wordlist
 
 ##########################################################################################################################
 
-        # include common prefixes/ suffixes
-        print('{}[+]{} Adding common prefixes and suffixes to {}{} generated words{}'.format(color.GREEN,color.END,color.CYAN,len(final_wordlist),color.END))
-        print('{}[!] {}This operation may take several minutes!{}'.format(color.ORANGE, color.CBLINK, color.END))
-        templist = append_prepend(final_wordlist)
-        final_wordlist += templist
+        if UI.presuf:
+            # include common prefixes/ suffixes
+            print('{}[+]{} Adding common prefixes and suffixes to {}{} generated words{}'.format(color.GREEN,color.END,color.CYAN,len(final_wordlist),color.END))        
+            print('{}[!] This operation may take several minutes!{}'.format(color.ORANGE, color.END))
+            temp_wordlist = append_prepend(final_wordlist)
+            final_wordlist += temp_wordlist
 
 ##########################################################################################################################
 
@@ -95,10 +96,9 @@ def run():
         if UI.artists:
             for artist in UI.artists:
                 phrases=[]            
-                songs = song_search_by_artist(artist)
-                #print('[!] {}{}{} songs found for artist: {}{}{}'.format(color.YELLOW,len(songs),color.END,color.YELLOW,artist,color.END))
+                songs = song_search_by_artist(artist)                
                 if len(songs)>5:
-                    print('{}[!] {}This operation may take several minutes!{}'.format(color.ORANGE, color.CBLINK, color.END))
+                    print('{}[!] This operation may take several minutes!{}'.format(color.ORANGE, color.END))
                 if songs:
                     temp_wordlist = []
                     print('{}[+]{} Applying case transforms to {}{}{} song names found for artist: {}{}{}'.format(color.GREEN,color.END,color.YELLOW,len(songs),color.END,color.YELLOW,artist,color.END))
@@ -121,6 +121,10 @@ def run():
 
         # re-check for duplicates
         final_wordlist = list(set((final_wordlist)))
+
+#        for word in final_wordlist:
+#            if word[0] in charsets.sep_charset or word[-1] in charsets.sep_charset:
+#                final_wordlist.remove(word)
 
         # SAVE WORDLIST TO FILE        
         with open(UI.outfile, 'w') as of:
@@ -156,7 +160,7 @@ def run():
         print('\n\n{}[!] Exiting...{}\n'.format(color.RED, color.END))
         sys.exit(3)
 
-    except Exception as e:
-        print(e)
+    #except Exception as e:
+    #    print(e)
 
 run()

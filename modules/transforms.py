@@ -132,10 +132,15 @@ def take_initials(word):
 def append_prepend(final_wordlist):
     # include common prefixes/ suffixes
     wordlist=[]
-    for pre_suf in charsets.common_prefix_suffix:        
-        for passes in final_wordlist:            
-            wordlist.append(passes+pre_suf)            
-            #wordlist.append(pre_suf+passes)
+    for pre_suf in charsets.common_prefix_suffix:
+        cnt=0
+        for passes in final_wordlist:
+            cnt+=1
+            wordlist.append(passes+pre_suf)
+            wordlist.append(passes+' '+pre_suf)
+            wordlist.append(pre_suf+passes)
+            wordlist.append(pre_suf+' '+passes)
+
     return wordlist
 
 ##########################################################################################################################

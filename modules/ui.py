@@ -11,7 +11,7 @@ class userinterface:
         self.DEFAULT_MIN = 6
         self.DEFAULT_MAX = 12
         self.DEFAULT_N_WORDS = 2
-        self.DEFAULT_OUTPUT_FILE = 'custom_passlist.txt'
+        self.DEFAULT_OUTPUT_FILE = 'custompasslist.txt'
         self.DEFAULT_THREADS = 5        
 
 ##########################################################################################################################
@@ -90,6 +90,7 @@ class userinterface:
         leet = input('{}[?]{} Do you want to produce 1337 7r4n5f0rms? [y/n] {}(default: False){} >>> '.format(color.BLUE, color.END,color.YELLOW,color.END))
         case = input('{}[?]{} Do you want to produce cAsE tRaNsFoRmS? [y/n] {}(default: False){} >>> '.format(color.BLUE, color.END,color.YELLOW,color.END))
         sep = input('{}[?]{} Do you want to use common_word-separators replacing spaces? [y/n] {}(default: False){} >>> '.format(color.BLUE, color.END,color.YELLOW,color.END))
+        presuf = input('{}[?]{} Do you want to append/ prepend common prefixes/ suffixes? [y/n] {}(default: False){} >>> '.format(color.BLUE, color.END,color.YELLOW,color.END))
 
         if leet and leet[0].lower() == 'y':
             self.leet = True
@@ -105,12 +106,17 @@ class userinterface:
             self.sep = True
         else:
             self.sep = False
+        
+        if presuf and presuf[0].lower() == 'y':
+            self.presuf = True
+        else:
+            self.presuf = False
 
 ##########################################################################################################################
 
         # how many words to combine together
         while True:
-            n_words = input('{}[?]{} How many words do you want to combine at most {}(default: {}){} >>> '.format(color.BLUE, color.END,color.YELLOW,self.DEFAULT_N_WORDS,color.END))
+            n_words = input('{}[?]{} How many words do you want to combine at most {}(default: {}) {}[1 to not combine]{} >>> '.format(color.BLUE, color.END,color.YELLOW,self.DEFAULT_N_WORDS,color.ORANGE,color.END))
             if is_empty(n_words):
                 self.n_words = self.DEFAULT_N_WORDS; break
             else:
@@ -161,18 +167,29 @@ class userinterface:
         self.base_wordlist = []
         # adding the relevant information to our wordlist
         if not is_empty(firstname):
-            firstname = firstname.lower()
-            self.base_wordlist.append(firstname)
+            if not self.case:
+                self.base_wordlist.append(firstname)
+            else:
+                firstname = firstname.lower()
+                self.base_wordlist.append(firstname)
 
         if not is_empty(midname):
-            midname = midname.lower()
-            self.base_wordlist.append(midname)
+            if not self.case:
+                self.base_wordlist.append(midname)
+            else:
+                midname = midname.lower()
+                self.base_wordlist.append(midname)
 
         if not is_empty(lastname):
-            lastname = lastname.lower()
-            self.base_wordlist.append(lastname)
+            if not self.case:
+                self.base_wordlist.append(lastname)
+            else:
+                lastname = lastname.lower()
+                self.base_wordlist.append(lastname)
         
         if not is_empty(name_initials):
+            initials = name_initials
+            self.base_wordlist.append(initials)
             initials = name_initials.lower()
             self.base_wordlist.append(initials)
         
@@ -193,18 +210,25 @@ class userinterface:
             others = othernames.split(',')            
             for i in others:
                 if len(i.split(' ')) > 1:
-                    initials = take_initials(i).lower()
-                    self.base_wordlist.append(initials)
+                    if not self.case:
+                        self.base_wordlist.append(initials)
+                    else:
+                        initials = take_initials(i).lower()
+                        self.base_wordlist.append(initials)
                 self.base_wordlist.append(i.lower())
         
         if self.artists:
             for artist in self.artists:
                 if len(artist.split(' ')) > 1:
-                    initials = take_initials(artist).lower()
-                    self.base_wordlist.append(initials)
+                    if not self.case:
+                        initials = take_initials(artist)
+                        self.base_wordlist.append(initials)
+                    else:
+                        initials = take_initials(artist).lower()
+                        self.base_wordlist.append(initials)
                 for a in artist.split(' '):                    
                     self.base_wordlist.append(a)
-    
+
 ##########################################################################################################################
 
     def getList(self):
