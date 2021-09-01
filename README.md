@@ -22,3 +22,8 @@ Finally, the script scrapes the internet for songs and their lyrics to be added 
 - Fetches list of Songs based on Artist name from https://www.song-list.net/
 - Extracts the Lyrics of fetched Songs from https://www.azlyrics.com/
 
+_____
+## Usage
+<strong>custompass_gen.py</strong>
+
+* Follow the on-screen instructions, they're pretty much self explanatory
